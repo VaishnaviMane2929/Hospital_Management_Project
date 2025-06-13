@@ -3,6 +3,7 @@ package com.admin.servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +13,9 @@ import com.dao.DoctorDao;
 import com.db.dbConnection;
 import com.entity.Doctor;
 
-public class UpdateServlet extends HttpServlet{
+@WebServlet("/updateDoctor")
+
+public class UpdateDoctor extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,11 +38,11 @@ public class UpdateServlet extends HttpServlet{
 			HttpSession session=req.getSession();
 			
 			if (dao.updateDoctor(d)) {
-				session.setAttribute("sucMsg", "Doctor Added Succesfully...");
+				session.setAttribute("sucMsg", "Doctor Update Succesfully...");
 				resp.sendRedirect("admin/doctor.jsp");
 			} else {
 				session.setAttribute("errorMsg", "Somethint Wrong on server...");
-				resp.sendRedirect("admin/doctor.jsp");
+				resp.sendRedirect("admin/view_doctor.jsp");
 
 			}
 			

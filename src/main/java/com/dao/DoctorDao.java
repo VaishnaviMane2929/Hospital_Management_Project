@@ -142,5 +142,24 @@ public boolean updateDoctor(Doctor d) {
 	
 }
 
+public boolean deleteDoctor(int id) {
+    boolean f = false;
+    String sql = "DELETE FROM doctor WHERE id=?";
+    
+    try (PreparedStatement pst = conn.prepareStatement(sql)) {
+        pst.setInt(1, id);
+        int i = pst.executeUpdate();
+        if (i == 1) {
+            f = true;
+        }
+    } catch (Exception e) {
+        System.out.println("Error while deleting doctor: " + e.getMessage());
+        e.printStackTrace();
+    }
+    
+    return f;
+}
+
+
 
 }

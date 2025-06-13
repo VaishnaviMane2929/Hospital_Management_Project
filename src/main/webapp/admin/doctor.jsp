@@ -23,7 +23,7 @@
   <div class="row gy-4">
 
     <!-- Form Column -->
-    <div class="col-12 col-lg-4">
+    <div class="col-12 col-lg-5 offset-md-4">
       <div class="card paint-card h-100">
         <div class="card-body">
           <h4 class="text-center mb-4">Add Doctor</h4>
@@ -86,80 +86,14 @@
             </div>
 
             <div class="text-center">
-              <button type="submit" class="btn btn-success w-100">Submit</button>
+              <button type="submit" class="btn btn-success w-100">Update</button>
             </div>
           </form>
         </div>
       </div>
     </div>
 
-    <!-- Table Column -->
-    <div class="col-12 col-lg-8">
-      <div class="card paint-card h-100">
-        <div class="card-body">
-          <p class="fs-4 text-center mb-3">Doctor Details</p>
-          <div class="table-responsive">
-            <table class="table table-bordered table-striped text-center align-middle">
-              <thead class="table-success">
-                <tr>
-                  <th>Full Name</th>
-                  <th>DOB</th>
-                  <th>Qualification</th>
-                  <th>Specialist</th>
-                  <th>Email</th>
-                  <th>Contact No</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <%
-                  DoctorDao dao2 = new DoctorDao(dbConnection.getConn());
-                  List<Doctor> list2 = dao2.getAllDocto();  // Check spelling of method
-                  for (Doctor d : list2) {
-                %>
-                <tr>
-                  <td><%= d.getFullName() %></td>
-                  <td><%= d.getDob() %></td>
-                  <td><%= d.getQualification() %></td>
-                  <td><%= d.getSpecialist() %></td>
-                  <td><%= d.getEmail() %></td>
-                  <td><%= d.getMobNo() %></td>
-                  <td>
-                    <a href="edit_doctor.jsp?id=<%= d.getId() %>" class="btn btn-sm btn-outline-primary me-1" title="Edit">
-                      <i class="bi bi-pencil-square"></i>
-                    </a>
-                    <a href="deleteDoctor?id=<%= d.getId() %>" class="btn btn-sm btn-outline-danger" title="Delete"
-                       onclick="return confirm('Are you sure you want to delete this doctor?');">
-                      <i class="bi bi-trash"></i>
-                    </a>
-                  </td>
-                </tr>
-                <%
-                  }
-                %>
-
-                <!-- Optional JSTL-based listing -->
-                <c:forEach var="doc" items="${doctorList}">
-                  <tr>
-                    <td>${doc.fullName}</td>
-                    <td>${doc.dob}</td>
-                    <td>${doc.qualification}</td>
-                    <td>${doc.specialist}</td>
-                    <td>${doc.email}</td>
-                    <td>${doc.mobno}</td>
-                    <td>
-                      <a href="edit?id=${doc.id}" class="btn btn-sm btn-warning">Edit</a>
-                      <a href="delete?id=${doc.id}" class="btn btn-sm btn-danger">Delete</a>
-                    </td>
-                  </tr>
-                </c:forEach>
-
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
+   
 
   </div>
 </div>

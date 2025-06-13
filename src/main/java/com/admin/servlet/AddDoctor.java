@@ -13,6 +13,7 @@ import com.dao.DoctorDao;
 import com.db.dbConnection;
 import com.entity.Doctor;
 
+
 @WebServlet("/addDoctor")
 public class AddDoctor extends HttpServlet{
 
@@ -37,7 +38,7 @@ public class AddDoctor extends HttpServlet{
 				session.setAttribute("sucMsg", "Doctor Added Succesfully...");
 				resp.sendRedirect("admin/doctor.jsp");
 			} else {
-				session.setAttribute("errorMsg", "Somethint Wrong on server...");
+				session.setAttribute("errorMsg", "Something Wrong on server...");
 				resp.sendRedirect("admin/doctor.jsp");
 
 			}
