@@ -43,7 +43,7 @@ public class DoctorDao {
 		
 	}
 	
-	public List<Doctor> getAllDocto() {
+	public List<Doctor> getAllDoctor() {
 		
 		List <Doctor> List=new ArrayList<Doctor>();
 		Doctor d=null;

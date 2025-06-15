@@ -1,3 +1,8 @@
+<%@page import="com.db.dbConnection"%>
+<%@page import="com.dao.DoctorDao"%>
+<%@page import="com.entity.Doctor"%>
+<%@page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -55,7 +60,7 @@
 
                         <div class="col-md-6">
                             <label class="form-label">Full Name</label>
-                            <input required type="text" class="form-control" name="fullName">
+                            <input required type="text" class="form-control" name="ufullName">
                         </div>
 
                         <div class="col-md-6">
@@ -78,7 +83,8 @@
 
                         <div class="col-md-6">
                             <label class="form-label">Email</label>
-                            <input type="email" class="form-control" name="email">
+                            <input type="email" class="form-control" name="email" value="${userObj.uemail}">
+                            
                         </div>
 
                         <div class="col-md-6">
@@ -94,11 +100,18 @@
                         <div class="col-md-6">
                             <label class="form-label">Doctor</label>
                             <select required class="form-control" name="doct">
-                                <option value="">--select--</option>
-                                <!-- Optionally use JSTL loop here -->
-                                <option value="Dr. John">Dr. John</option>
-                                <option value="Dr. Priya">Dr. Priya</option>
-                            </select>
+    <option value="">--select--</option>
+    <%
+        DoctorDao dao = new DoctorDao(dbConnection.getConn());
+        List<Doctor> list = dao.getAllDoctor();
+        for (Doctor d : list) {
+    %>
+        <option value="<%= d.getId() %>"><%= d.getFullName() %> (<%= d.getSpecialist() %>)</option>
+    <%
+        }
+    %>
+</select>
+
                         </div>
 
                         <div class="col-md-12">
@@ -108,7 +121,7 @@
 
                         <!-- Submit button -->
                         <c:if test="${empty userObj}">
-                            <a href="ulogin.jsp" class="col-md-6 offset-md-3 btn btn-success">Submit</a>
+                            <a href="login.jsp" class="col-md-6 offset-md-3 btn btn-success">Submit</a>
                         </c:if>
 
                         <c:if test="${not empty userObj}">
